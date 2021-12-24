@@ -9,7 +9,7 @@ import fr.uparis.diderot.data.entity.Watering_Plant
 /**
  *
  */
-class Repository(private val wateringPlant: Watering_Nutriment_PlantDao)
+class AppRepository(private val wateringPlant: Watering_Nutriment_PlantDao)
 {
 
     @Suppress("RedundantSuspendModifier")
