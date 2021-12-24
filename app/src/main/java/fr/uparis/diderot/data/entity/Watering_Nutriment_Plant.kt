@@ -10,15 +10,26 @@ import java.util.*
  * 
  */
 @Entity(tableName = "Watering_Plant")
-data class Watering_Plant(@PrimaryKey(autoGenerate = true) var id_plant: Int,
+data class Watering_Plant(@PrimaryKey(autoGenerate = true) var id_plant: Int?,
                           var nom_commun: String? = null,
                           var nom_latin: String? = null,
                           var number_Times: Int,
                           var period_Number_Times: Int,
-                          var localUri : Uri,
+                          var localUri: Uri? =null,
                           var last_Watering: Date? = null,
                           var next_Watering: Date? = null
-)
+){
+    @Ignore
+    constructor(
+        nom_commun: String? = null,
+         nom_latin: String? = null,
+         number_Times: Int,
+         period_Number_Times: Int,
+         localUri : Uri? =null,
+         last_Watering: Date? = null,
+         next_Watering: Date? = null
+    ) : this (null, nom_commun, nom_latin,number_Times,period_Number_Times,localUri,last_Watering,next_Watering)
+}
 
 /**
  *

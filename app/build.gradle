@@ -13,6 +13,18 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                        "room.schemaLocation" : "$projectDir/schemas".toString(),
+                        "room.incremental" : "true",
+                        "room.expandProjection": "true"]
+            }
+        }
+
+        buildFeatures{
+            viewBinding true
+        }
     }
     buildTypes {
         release {
@@ -65,5 +77,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"
+
+
+    //Image Picker Libariry
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
 }
 
