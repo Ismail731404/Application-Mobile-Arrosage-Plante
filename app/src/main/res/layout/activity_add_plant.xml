@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#6BFCD4B2"
-    tools:context=".MainActivity">
+    tools:context=".AddPlantActivity">
 
     <EditText
         android:id="@+id/Period_Number_Times"
@@ -43,7 +43,7 @@
         android:paddingTop="3dp"
         android:paddingRight="15dp"
         android:paddingBottom="3dp"
-        android:text="@string/enter_the_details_for_social_account"
+        android:text="@string/enter_the_details_for_registre_plant"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textStyle="italic"
         android:visibility="visible"

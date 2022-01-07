@@ -15,10 +15,15 @@ import fr.uparis.diderot.data.entity.Watering_Plant
 import fr.uparis.diderot.databinding.ActivityAddPlantBinding
 import java.io.File
 import java.util.*
+import android.content.ContentResolver
+import java.security.AccessControlContext
+import java.security.AccessController.getContext
+
 
 class AddPlantActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddPlantBinding
+    private lateinit var uriImagedefaut: Uri
     private var localUri: Uri? = null
     private var uriImage: Uri? = null
     private var context: Context = this
@@ -31,6 +36,17 @@ class AddPlantActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddPlantBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        //Image par defaut
+        uriImagedefaut = Uri.Builder()
+            .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
+            .authority(resources.getResourcePackageName(R.drawable.plant22))
+            .appendPath(resources.getResourceTypeName(R.drawable.plant22))
+            .appendPath(resources.getResourceEntryName(R.drawable.plant22))
+            .build()
+        //Initialement uriImage prend l'image par defaut
+        uriImage = uriImagedefaut
 
         binding.floatingActionButton.setOnClickListener(View.OnClickListener {
             ImagePicker.with(this)
@@ -67,6 +83,8 @@ class AddPlantActivity : AppCompatActivity() {
                                     .toInt() / NumberTimes.text.toString().toInt()).toInt())
                             )
                         )
+
+
                         viewModel.insertPlantWatering(
                             Watering_Plant(
                                 nom_commun = NomCommun.text.toString(),
@@ -79,6 +97,8 @@ class AddPlantActivity : AppCompatActivity() {
                             )
                         )
 
+                        Toast.makeText(context,"Enregistrement Reusie",Toast.LENGTH_LONG).show()
+                        VideContenuEditext()
                     } catch (e: NumberFormatException) {
                         Toast.makeText(
                             context,
@@ -87,11 +107,21 @@ class AddPlantActivity : AppCompatActivity() {
                         ).show()
                     }
 
-                } else Toast.makeText(context, "Veuillez remplir", Toast.LENGTH_LONG).show()
+                } else Toast.makeText(context, "Merci de saisir tout le champs", Toast.LENGTH_LONG).show()
             }
 
         }
 
+    }
+
+    private fun VideContenuEditext() {
+        binding.apply {
+            coverImage.setImageURI(uriImagedefaut)
+            NomCommun.setText("")
+            NomLatin.setText("")
+            NumberTimes.setText("")
+            PeriodNumberTimes.setText("")
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -132,4 +162,6 @@ class AddPlantActivity : AppCompatActivity() {
         //éventuellement afficher l’image dans ImageView
 
     }
+
+
 }

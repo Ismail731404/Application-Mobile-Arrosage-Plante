@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/AjouteSaison"
+        android:icon="@drawable/ic_baseline_add_24"
+        android:title="Ajoute une saison"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/AjouteNutriment"
+        android:icon="@drawable/ic_baseline_add_24"
+        android:title="Ajoute une Nutriment"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/Modifier"
+        android:icon="@drawable/ic_baseline_edit_24"
+        android:title="Modifier"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/Supprimer"
+        android:icon="@drawable/ic_baseline_delete_24"
+        android:title="Supprimer"
+        app:showAsAction="ifRoom"
+        />
+
+</menu>
