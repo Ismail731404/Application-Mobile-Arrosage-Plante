@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">Projet Programmation Mobile</string>
-    <string name="enter_the_details_for_social_account">Enregistrement d\'une nouvelle plante</string>
+    <string name="enter_the_details_for_registre_plant">Enregistrement d\'une nouvelle plante</string>
     <string name="Nom_Commun">Nom_Commun</string>
     <string name="Nom_Latin">Nom_Latin</string>
     <string name="Number_Times">Number Times</string>
     <string name="Period_Number_Times">Period Number Times</string>
+    <string name="Plant_empty">Watering Plant empty</string>
 
 
     <!--    User Data Show Activity - Strings-->
