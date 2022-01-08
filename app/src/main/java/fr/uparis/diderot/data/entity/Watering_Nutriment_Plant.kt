@@ -3,7 +3,7 @@ package fr.uparis.diderot.data.entity
 
 import android.net.Uri
 import androidx.room.*
-import java.util.*
+import java.time.LocalDate
 
 
 /**
@@ -16,8 +16,8 @@ data class Watering_Plant(@PrimaryKey(autoGenerate = true) var id_plant: Int?,
                           var number_Times: Int,
                           var period_Number_Times: Int,
                           var localUri: Uri? =null,
-                          var last_Watering: Date? = null,
-                          var next_Watering: Date? = null
+                          var last_Watering: LocalDate? = null,
+                          var next_Watering: LocalDate? = null
 ){
     @Ignore
     constructor(
@@ -26,8 +26,8 @@ data class Watering_Plant(@PrimaryKey(autoGenerate = true) var id_plant: Int?,
          number_Times: Int,
          period_Number_Times: Int,
          localUri : Uri? =null,
-         last_Watering: Date? = null,
-         next_Watering: Date? = null
+         last_Watering: LocalDate? = null,
+         next_Watering: LocalDate? = null
     ) : this (null, nom_commun, nom_latin,number_Times,period_Number_Times,localUri,last_Watering,next_Watering)
 }
 
@@ -39,8 +39,8 @@ data class Nutriment(@PrimaryKey(autoGenerate = true) var id_nutriment: Int,
                      var id_plant_reference:Int,
                      var number_Times: Int? = null,
                      var period_Number_Times: Int? = null,
-                     var last_Nutriment: Date? = null,
-                     var next_Nutriment: Date? = null
+                     var last_Nutriment: LocalDate? = null,
+                     var next_Nutriment: LocalDate? = null
 )
 
 
@@ -51,8 +51,8 @@ data class Nutriment(@PrimaryKey(autoGenerate = true) var id_nutriment: Int,
 @Entity(tableName = "Arronsage_En_Saison")
 data class Arronsage_En_saison(@PrimaryKey(autoGenerate = true) var id_saison: Int? = null,
                                var id_plant_reference: Int,
-                               var first_Month: Date? = null,
-                               var last_Month: Date? = null,
+                               var first_Month: LocalDate? = null,
+                               var last_Month: LocalDate? = null,
                                var number_Times: Int? = null,
                                var period_Number_Times: Int? = null)
 
@@ -91,13 +91,13 @@ data class Watering_Plant_And_Nutriment(
 //Conversion TYPE DATE
 class Converters {
     @TypeConverter
-    fun fromTimestamp(value: Long?): Date? {
-        return value?.let { Date(it) }
+    fun fromTimestamp(value: String?): LocalDate? {
+        return LocalDate.parse(value)
     }
 
     @TypeConverter
-    fun dateToTimestamp(date: Date?): Long? {
-        return date?.time?.toLong()
+    fun dateToTimestamp(date: LocalDate?): String? {
+        return date?.toString()
     }
 
     @TypeConverter

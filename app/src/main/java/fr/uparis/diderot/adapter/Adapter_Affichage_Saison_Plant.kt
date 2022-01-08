@@ -9,9 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import fr.uparis.diderot.data.entity.Arronsage_En_saison
 import fr.uparis.diderot.databinding.ListItemSaisonPlantBinding
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
+import java.time.LocalDate
 
 
 class Adapter_Affichage_Saison_Plant(val listener: OnItemClickListener) :
@@ -48,13 +46,12 @@ class Adapter_Affichage_Saison_Plant(val listener: OnItemClickListener) :
         }
 
         var idEn_saison: Int? = null
-        var dateFormat: DateFormat = SimpleDateFormat("dd/MM/yyyy")
-        fun FirthMonth(month: Date?) {
-            binding.FirthMonth.text = dateFormat.format(month)
+        fun FirthMonth(month: LocalDate?) {
+            binding.FirthMonth.text = month.toString()
         }
 
-        fun LastMonth(month: Date?) {
-            binding.lastMOnth.text = dateFormat.format(month)
+        fun LastMonth(month: LocalDate?) {
+            binding.lastMOnth.text = month.toString()
         }
 
         fun NumberTimes(num: Int?) {

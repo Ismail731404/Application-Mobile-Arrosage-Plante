@@ -11,9 +11,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import fr.uparis.diderot.data.entity.Watering_Plant
 import fr.uparis.diderot.databinding.ListItemWateringplantBinding
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
+import java.time.LocalDate
 
 
 class Adapter_Affichage_Plant(val listener: OnItemClickListener) : ListAdapter<Watering_Plant, Adapter_Affichage_Plant.VH>(
@@ -46,10 +44,9 @@ class Adapter_Affichage_Plant(val listener: OnItemClickListener) : ListAdapter<W
         }
 
         var id_plant : Int? = null
-        var dateFormat: DateFormat = SimpleDateFormat("dd/MM/yyyy")
         fun NamePlant(nameCommun: String?,nameLatin:String?) { binding.plantName.text = nameCommun+" "+nameLatin}
-        fun DateDernierAronsage(date :Date?){binding.lastWatering.text = dateFormat.format(date) }
-        fun DateNextWatering(date: Date?){binding.nextWatering.text = dateFormat.format(date)}
+        fun DateDernierAronsage(date :LocalDate?){binding.lastWatering.text = date.toString() }
+        fun DateNextWatering(date: LocalDate?){binding.nextWatering.text = date.toString()}
         fun Image(uri : Uri?){binding.imageView.setImageURI(uri)}
         fun IdPlant(id : Int?){id_plant= id}
 

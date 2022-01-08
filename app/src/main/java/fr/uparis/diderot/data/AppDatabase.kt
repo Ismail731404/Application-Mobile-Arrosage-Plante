@@ -15,7 +15,7 @@ import kotlinx.coroutines.CoroutineScope
 /**
  *
  */
-@Database(entities = [Watering_Plant::class,Arronsage_En_saison::class,Nutriment::class],version = 2)
+@Database(entities = [Watering_Plant::class,Arronsage_En_saison::class,Nutriment::class],version = 3)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 

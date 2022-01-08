@@ -9,9 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import fr.uparis.diderot.data.entity.Nutriment
 import fr.uparis.diderot.databinding.ListItemNutrimentPlantBinding
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
+import java.time.LocalDate
 
 
 class Adapter_Affichage_Nutriment_Plant(val listener: OnItemClickListener) :
@@ -49,7 +47,6 @@ class Adapter_Affichage_Nutriment_Plant(val listener: OnItemClickListener) :
         }
 
         var id_nutriment: Int? = null
-        var dateFormat: DateFormat = SimpleDateFormat("dd/MM/yyyy")
         fun NumberTimes(num: Int?) {
             binding.numberTimes.text = num.toString()
         }
@@ -58,12 +55,12 @@ class Adapter_Affichage_Nutriment_Plant(val listener: OnItemClickListener) :
             binding.PeriodNumberTimes.text = num.toString()
         }
 
-        fun DateDernierNutriment(date: Date?) {
-            binding.lastNutriment.text = dateFormat.format(date)
+        fun DateDernierNutriment(date: LocalDate?) {
+            binding.lastNutriment.text = date.toString()
         }
 
-        fun DateNextNutriment(date: Date?) {
-            binding.NextNutriment.text = dateFormat.format(date)
+        fun DateNextNutriment(date: LocalDate?) {
+            binding.NextNutriment.text = date.toString()
         }
 
         fun IdPNutriment(id: Int?) {
