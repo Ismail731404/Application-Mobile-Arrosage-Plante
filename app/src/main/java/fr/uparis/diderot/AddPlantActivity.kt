@@ -18,6 +18,7 @@ import java.util.*
 import android.content.ContentResolver
 import java.security.AccessControlContext
 import java.security.AccessController.getContext
+import java.time.LocalDate
 
 
 class AddPlantActivity : AppCompatActivity() {
@@ -75,14 +76,9 @@ class AddPlantActivity : AppCompatActivity() {
 
                     try {
                         //Calcule Next Watering Day
-                        var nextwateringdate: Calendar = Calendar.getInstance()
-                        nextwateringdate.set(
-                            Calendar.DAY_OF_MONTH,
-                            nextwateringdate.get(
-                                Calendar.DAY_OF_MONTH + ((PeriodNumberTimes.text.toString()
-                                    .toInt() / NumberTimes.text.toString().toInt()).toInt())
-                            )
-                        )
+                        var date = LocalDate.now()
+                        var decalage =  (PeriodNumberTimes.text.toString().toInt() / NumberTimes.text.toString().toInt()).toInt().toLong()
+                        var nextwateringdate = date.plusDays(decalage)
 
 
                         viewModel.insertPlantWatering(
@@ -92,8 +88,8 @@ class AddPlantActivity : AppCompatActivity() {
                                 number_Times = NumberTimes.text.toString().toInt(),
                                 period_Number_Times = PeriodNumberTimes.text.toString().toInt(),
                                 localUri = uriImage,
-                                last_Watering = Calendar.getInstance().time,
-                                next_Watering = nextwateringdate.time
+                                last_Watering = LocalDate.now(),
+                                next_Watering = nextwateringdate
                             )
                         )
 
