@@ -8,8 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import fr.uparis.diderot.databinding.ActivityAppDisplayGivenPlantBinding
-import java.text.DateFormat
-import java.text.SimpleDateFormat
+
 
 class AppDisplayGivenPlant : AppCompatActivity() {
 
@@ -23,8 +22,7 @@ class AppDisplayGivenPlant : AppCompatActivity() {
         binding = ActivityAppDisplayGivenPlantBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //recuperation Plant
-        var dateFormat: DateFormat = SimpleDateFormat("dd/MM/yyyy")
+
 
         intent.getStringExtra("id_plant")?.let { viewModel.getPlantDonne(it.toInt()) }
         Log.i("AppDisplay22", "onCreate: idplant ="+intent.getStringExtra("id_plant"))
@@ -32,8 +30,8 @@ class AppDisplayGivenPlant : AppCompatActivity() {
              binding.apply {
                  imageView.setImageURI(plant.localUri)
                  plantName.text = plant.nom_commun+" "+plant.nom_latin
-                 lastWatering.text = dateFormat.format(plant.last_Watering)
-                 nextWatering.text = dateFormat.format(plant.next_Watering)
+                 lastWatering.text = plant.last_Watering.toString()
+                 nextWatering.text = plant.next_Watering.toString()
              }
 
         })
