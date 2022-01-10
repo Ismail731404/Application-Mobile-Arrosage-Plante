@@ -29,7 +29,7 @@
             android:paddingTop="3dp"
             android:paddingRight="15dp"
             android:paddingBottom="3dp"
-            android:text="@string/enter_the_details_for_registre_plant"
+            android:text="Modifier les informations du plant"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="italic"
             android:visibility="visible"
@@ -174,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:text="Submit" />
+                android:text="Modifier" />
         </RelativeLayout>
 
     </LinearLayout>

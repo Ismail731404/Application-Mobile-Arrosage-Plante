@@ -7,16 +7,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import fr.uparis.diderot.AppDisplayGivenPlant
 import fr.uparis.diderot.data.entity.Arronsage_En_saison
 import fr.uparis.diderot.databinding.ListItemSaisonPlantBinding
 import java.time.LocalDate
 
 
-class Adapter_Affichage_Saison_Plant(val listener: OnItemClickListener) :
+class Adapter_Affichage_Saison_Plant() :
     ListAdapter<Arronsage_En_saison, Adapter_Affichage_Saison_Plant.VH>(
         InfoComparator()
     ) {
 
+    var listener: OnItemClickListener?=null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val binding = ListItemSaisonPlantBinding
             .inflate(
@@ -34,6 +36,9 @@ class Adapter_Affichage_Saison_Plant(val listener: OnItemClickListener) :
         holder.LastMonth(current.last_Month)
         holder.NumberTimes(current.number_Times)
         holder.PeriodNumberTimes(current.period_Number_Times)
+        if(position % 2 == 0){
+            holder.Coloration()
+        }
 
     }
 
@@ -41,7 +46,7 @@ class Adapter_Affichage_Saison_Plant(val listener: OnItemClickListener) :
         View.OnClickListener {
 
         init {
-            itemView.setOnClickListener(this)
+            binding.deleteItem.setOnClickListener(this)
             Log.i("MainActivity1", "onItemClick: rentre dans onItemCclick")
         }
 
@@ -67,11 +72,14 @@ class Adapter_Affichage_Saison_Plant(val listener: OnItemClickListener) :
             binding.idSaison.text = id.toString()
         }
 
+        fun Coloration(){
+            binding.linerLayout.setBackgroundColor(AppDisplayGivenPlant.colorItem)
+        }
 
         override fun onClick(v: View?) {
 
             val position: Int = adapterPosition
-            listener.onItemClick(position, idEn_saison!!)
+            listener?.onItemClick(position, idEn_saison!!)
 
 
         }
@@ -94,6 +102,6 @@ class Adapter_Affichage_Saison_Plant(val listener: OnItemClickListener) :
     }
 
     interface OnItemClickListener {
-        fun onItemClick(position: Int, id_plant: Int)
+        fun onItemClick(position: Int, id_saison:  Int)
     }
 }

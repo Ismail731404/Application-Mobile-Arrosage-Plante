@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import fr.uparis.diderot.AppDisplayGivenPlant
 import fr.uparis.diderot.data.entity.Watering_Plant
 import fr.uparis.diderot.databinding.ListItemWateringplantBinding
 import java.time.LocalDate
@@ -33,6 +34,7 @@ class Adapter_Affichage_Plant(val listener: OnItemClickListener) : ListAdapter<W
          holder.DateNextWatering(current.next_Watering)
          holder.IdPlant(current.id_plant)
          holder.Image(current.localUri)
+
 
     }
 

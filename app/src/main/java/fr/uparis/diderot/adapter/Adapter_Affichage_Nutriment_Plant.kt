@@ -4,19 +4,22 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import fr.uparis.diderot.AppDisplayGivenPlant
 import fr.uparis.diderot.data.entity.Nutriment
 import fr.uparis.diderot.databinding.ListItemNutrimentPlantBinding
 import java.time.LocalDate
 
 
-class Adapter_Affichage_Nutriment_Plant(val listener: OnItemClickListener) :
+class Adapter_Affichage_Nutriment_Plant() :
     ListAdapter<Nutriment, Adapter_Affichage_Nutriment_Plant.VH>(
         InfoComparator()
     ) {
 
+    var listener: OnItemClickListener?=null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val binding = ListItemNutrimentPlantBinding
             .inflate(
@@ -34,16 +37,17 @@ class Adapter_Affichage_Nutriment_Plant(val listener: OnItemClickListener) :
         holder.DateDernierNutriment(current.last_Nutriment)
         holder.DateNextNutriment(current.next_Nutriment)
         holder.IdPNutriment(current.id_nutriment)
-
-
+        Log.i("MainActivity1", "onItemClick: rentre dans onItemCclick")
+         if(position % 2 == 0){
+             holder.Coloration()
+         }
     }
 
     inner class VH(val binding: ListItemNutrimentPlantBinding) :
         RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
         init {
-            itemView.setOnClickListener(this)
-            Log.i("MainActivity1", "onItemClick: rentre dans onItemCclick")
+            binding.deleteItem.setOnClickListener(this)
         }
 
         var id_nutriment: Int? = null
@@ -67,12 +71,15 @@ class Adapter_Affichage_Nutriment_Plant(val listener: OnItemClickListener) :
             id_nutriment = id
             binding.idNutriment.text = id.toString()
         }
+        fun Coloration(){
+            binding.linerLayout.setBackgroundColor(AppDisplayGivenPlant.colorItem)
+        }
 
 
         override fun onClick(v: View?) {
 
             val position: Int = adapterPosition
-            id_nutriment?.let { listener.onItemClick(position, it) }
+            id_nutriment?.let { listener?.onItemClick(position, it) }
 
 
         }
@@ -89,6 +96,6 @@ class Adapter_Affichage_Nutriment_Plant(val listener: OnItemClickListener) :
     }
 
     interface OnItemClickListener {
-        fun onItemClick(position: Int, id_plant: Int)
+        fun onItemClick(position: Int, id_nutriment: Int)
     }
 }

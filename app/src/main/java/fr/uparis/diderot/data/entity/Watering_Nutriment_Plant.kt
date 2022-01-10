@@ -35,13 +35,23 @@ data class Watering_Plant(@PrimaryKey(autoGenerate = true) var id_plant: Int?,
  *
  */
 @Entity(tableName = "Nutriment")
-data class Nutriment(@PrimaryKey(autoGenerate = true) var id_nutriment: Int,
+data class Nutriment(@PrimaryKey(autoGenerate = true) var id_nutriment: Int?,
                      var id_plant_reference:Int,
                      var number_Times: Int? = null,
                      var period_Number_Times: Int? = null,
                      var last_Nutriment: LocalDate? = null,
                      var next_Nutriment: LocalDate? = null
 )
+{
+    @Ignore
+    constructor(
+         id_plant_reference:Int,
+         number_Times: Int? = null,
+         period_Number_Times: Int? = null,
+         last_Nutriment: LocalDate? = null,
+         next_Nutriment: LocalDate? = null
+    ) : this (null, id_plant_reference, number_Times,period_Number_Times,last_Nutriment,next_Nutriment)
+}
 
 
 
@@ -54,7 +64,19 @@ data class Arronsage_En_saison(@PrimaryKey(autoGenerate = true) var id_saison: I
                                var first_Month: LocalDate? = null,
                                var last_Month: LocalDate? = null,
                                var number_Times: Int? = null,
-                               var period_Number_Times: Int? = null)
+                               var period_Number_Times: Int? = null
+){
+    @Ignore
+    constructor(
+        id_plant_reference: Int,
+        first_Month: LocalDate? = null,
+        last_Month: LocalDate? = null,
+        number_Times: Int? = null,
+        period_Number_Times: Int? = null
+    ) : this (null, id_plant_reference, first_Month,last_Month,number_Times,period_Number_Times)
+}
+
+
 
 
 

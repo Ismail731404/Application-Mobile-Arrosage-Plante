@@ -5,28 +5,31 @@ import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.net.toUri
 import com.github.dhaval2404.imagepicker.ImagePicker
 import fr.uparis.diderot.data.entity.Watering_Plant
-import fr.uparis.diderot.databinding.ActivityAddPlantBinding
+import fr.uparis.diderot.databinding.ActivityAppModifierPantBinding
 import java.io.File
 import java.time.LocalDate
 
+class AppModifierPantActivity : AppCompatActivity() {
 
-class AddPlantActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityAddPlantBinding
+    private lateinit var binding: ActivityAppModifierPantBinding
     private lateinit var uriImagedefaut: Uri
     private var localUri: Uri? = null
     private var uriImage: Uri? = null
     private var context: Context = this
+    private var Id_plant: Int = 0
+    private lateinit var nextwateringdate:LocalDate
+    private lateinit var lastwateringdate:LocalDate
 
     private val viewModel: AppViewModel by viewModels {
         AppViewModelFactory((application as AppApplication).repository)
@@ -34,21 +37,28 @@ class AddPlantActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAddPlantBinding.inflate(layoutInflater)
+        binding = ActivityAppModifierPantBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
-        //ActionBar retour
-        addActionSearch()
-        //Image par defaut
-        uriImagedefaut = Uri.Builder()
-            .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
-            .authority(resources.getResourcePackageName(R.drawable.plant22))
-            .appendPath(resources.getResourceTypeName(R.drawable.plant22))
-            .appendPath(resources.getResourceEntryName(R.drawable.plant22))
-            .build()
-        //Initialement uriImage prend l'image par defaut
-        uriImage = uriImagedefaut
+        //Id_plant
+        Id_plant = intent.getStringExtra("id_plant")!!.toInt()
+        intent.getStringExtra("id_plant")?.let { viewModel.getPlantDonne(it.toInt()) }
+
+
+        viewModel.getPlantDonne?.observe(this,{plant ->
+            binding.apply {
+                coverImage.setImageURI(plant.localUri)
+                NomCommun.setText(plant.nom_commun.toString())
+                NomLatin.setText(plant.nom_latin.toString())
+                NumberTimes.setText(plant.number_Times.toString())
+                PeriodNumberTimes.setText(plant.period_Number_Times.toString())
+                lastwateringdate = plant.last_Watering!!
+                uriImage = plant.localUri
+            }
+
+        })
+
 
         binding.floatingActionButton.setOnClickListener(View.OnClickListener {
             ImagePicker.with(this)
@@ -77,27 +87,27 @@ class AddPlantActivity : AppCompatActivity() {
 
                     try {
                         //Calcule Next Watering Day
-                        var date = LocalDate.now()
+
                         var decalage =
                             (PeriodNumberTimes.text.toString().toInt() / NumberTimes.text.toString()
                                 .toInt()).toInt().toLong()
-                        var nextwateringdate = date.plusDays(decalage)
+                         nextwateringdate= lastwateringdate.plusDays(decalage)
 
-
-                        viewModel.insertPlantWatering(
+                        viewModel.updateWateringPlant(
                             Watering_Plant(
+                                id_plant=Id_plant,
                                 nom_commun = NomCommun.text.toString(),
                                 nom_latin = NomLatin.text.toString(),
                                 number_Times = NumberTimes.text.toString().toInt(),
                                 period_Number_Times = PeriodNumberTimes.text.toString().toInt(),
                                 localUri = uriImage,
-                                last_Watering = LocalDate.now(),
+                                last_Watering = lastwateringdate,
                                 next_Watering = nextwateringdate
                             )
                         )
 
-                        Toast.makeText(context, "Enregistrement Reusie", Toast.LENGTH_LONG).show()
-                        VideContenuEditext()
+                        Toast.makeText(context,"Modification Reusie", Toast.LENGTH_LONG).show()
+                        finish()
                     } catch (e: NumberFormatException) {
                         Toast.makeText(
                             context,
@@ -106,23 +116,14 @@ class AddPlantActivity : AppCompatActivity() {
                         ).show()
                     }
 
-                } else Toast.makeText(context, "Merci de saisir tout le champs", Toast.LENGTH_LONG)
-                    .show()
+                } else Toast.makeText(context, "Merci de saisir tout le champs", Toast.LENGTH_LONG).show()
             }
 
         }
 
     }
 
-    private fun VideContenuEditext() {
-        binding.apply {
-            coverImage.setImageURI(uriImagedefaut)
-            NomCommun.setText("")
-            NomLatin.setText("")
-            NumberTimes.setText("")
-            PeriodNumberTimes.setText("")
-        }
-    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -163,12 +164,7 @@ class AddPlantActivity : AppCompatActivity() {
 
     }
 
-    fun addActionSearch() {
-        val actionBar: ActionBar? = supportActionBar
-        actionBar?.setDisplayHomeAsUpEnabled(true)
 
-
-    }
 
 
 
