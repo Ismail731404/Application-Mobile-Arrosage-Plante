@@ -1,11 +1,13 @@
 package fr.uparis.diderot
 
+import android.util.Log
 import androidx.annotation.WorkerThread
 import fr.uparis.diderot.data.dao.Watering_Nutriment_PlantDao
 import fr.uparis.diderot.data.entity.Arronsage_En_saison
 import fr.uparis.diderot.data.entity.Nutriment
 import fr.uparis.diderot.data.entity.Watering_Plant
 import kotlinx.coroutines.flow.Flow
+import java.time.LocalDate
 
 /**
  *
@@ -36,8 +38,6 @@ class AppRepository(private val wateringPlant: Watering_Nutriment_PlantDao) {
     suspend fun updateWateringPlant(plant: Watering_Plant) {
         wateringPlant.updateWateringPlant(plant)
     }
-
-
 
     fun getPartialPLants(nom: String): Flow<List<Watering_Plant>> {
         return wateringPlant.loadPartialPlant(nom)
@@ -74,6 +74,19 @@ class AppRepository(private val wateringPlant: Watering_Nutriment_PlantDao) {
 
     suspend fun deleteWateingPlant(id: Int) {
         wateringPlant.deleteWaterintPlant(id)
+    }
+
+
+
+    fun getWateringPlant(CurrentDate : LocalDate) : Flow<List<Watering_Plant>>{
+        Log.e("getWatering","bien rentré")
+        return wateringPlant.getWateringPlant(CurrentDate)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun updateDate(plant: Watering_Plant){
+        wateringPlant.updateDate(plant)
     }
 
 

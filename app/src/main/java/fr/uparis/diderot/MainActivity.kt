@@ -1,9 +1,10 @@
 package fr.uparis.diderot
 
-import android.app.Activity
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.IBinder
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -17,10 +18,15 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.LifecycleOwner
 import fr.uparis.diderot.adapter.Adapter_Affichage_Plant
+import fr.uparis.diderot.data.entity.Watering_Plant
 import fr.uparis.diderot.databinding.ActivityMainBinding
 import fr.uparis.diderot.databinding.SearchBinding
+import java.time.LocalDate
+import java.util.*
 
 
 class MainActivity : AppCompatActivity(), Adapter_Affichage_Plant.OnItemClickListener {
@@ -30,7 +36,8 @@ class MainActivity : AppCompatActivity(), Adapter_Affichage_Plant.OnItemClickLis
     private lateinit var adapterAffichagePlant: Adapter_Affichage_Plant
     private var context: LifecycleOwner = this
     private lateinit var actionSearch: EditText
-    private val viewModel: AppViewModel by viewModels {
+    private var alarmManager : AlarmManager? = null
+    val viewModel: AppViewModel by viewModels {
         AppViewModelFactory((application as AppApplication).repository)
     }
 
@@ -50,6 +57,9 @@ class MainActivity : AppCompatActivity(), Adapter_Affichage_Plant.OnItemClickLis
         bindingSearch = SearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // amorcer l'alarm
+        amorcerAlarm();
+
         // Ajouter  Rearcher  icon
         addActionSearch()
 
@@ -68,6 +78,7 @@ class MainActivity : AppCompatActivity(), Adapter_Affichage_Plant.OnItemClickLis
     }
 
 
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
@@ -79,7 +90,12 @@ class MainActivity : AppCompatActivity(), Adapter_Affichage_Plant.OnItemClickLis
                 resultLauncher.launch(Intent(this, AddPlantActivity::class.java))
                 true
             }
+            R.id.ArronsageToDay -> {
+                resultLauncher.launch(Intent(this,AppWateringPlantActivity::class.java))
+                true
+            }
             else -> super.onOptionsItemSelected(item)
+
         }
     }
 
@@ -125,4 +141,43 @@ class MainActivity : AppCompatActivity(), Adapter_Affichage_Plant.OnItemClickLis
     }
 
 
+    private fun amorcerAlarm(){
+        val currentDate=LocalDate.now();
+        Log.e("TAG","$currentDate")
+
+        val calendar: Calendar = Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
+            set(Calendar.HOUR_OF_DAY, 17)
+            set(Calendar.MINUTE,34)
+            set(Calendar.SECOND,0)
+        }
+        Log.i("Alarme122", "In amorcerAlarme: and date =  "+calendar.toString())
+        viewModel.getWateringPlant(LocalDate.now())
+        viewModel.wateringPlantByDate?.observe(this){  it ->
+
+            if (it.isNotEmpty()){
+                val intent = Intent(this, AppService::class.java)
+                val pendingIntent = PendingIntent.getService(this,1,intent,0)
+
+                val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+                alarmManager?.setInexactRepeating(
+                    AlarmManager.RTC_WAKEUP,
+                    calendar.timeInMillis,
+                    AlarmManager.INTERVAL_DAY,
+                    pendingIntent
+                )
+                Log.i("Alarme122", "In observe reque: ")
+            }
+
+        }
+
+
+
+    }
+
+
+
+
 }
+

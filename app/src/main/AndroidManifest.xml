@@ -10,21 +10,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetProgrammationMobile">
-        <activity
-            android:name=".AppModifierPantActivity"
-            android:exported="true"
-            android:excludeFromRecents="true" />
-        <activity
-            android:name=".AppDisplayGivenPlant"
-            android:exported="true"
-            android:excludeFromRecents="true"
-            android:parentActivityName=".MainActivity"/>
+        <service
+            android:name=".AppService"
+            android:enabled="true"
+            android:exported="true"></service>
 
         <activity
-            android:name=".AddPlantActivity"
-            android:exported="true"
+            android:name=".AppWateringPlantActivity"
+            android:exported="true" />
+        <activity
+            android:name=".AppModifierPantActivity"
             android:excludeFromRecents="true"
-            android:parentActivityName=".MainActivity"/>
+            android:exported="true" />
+        <activity
+            android:name=".AppDisplayGivenPlant"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AddPlantActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:excludeFromRecents="true"

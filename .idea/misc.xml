@@ -15,11 +15,13 @@
         <entry key="app/src/main/res/layout/activity_add_saison_arronsage.xml" value="0.1656534954407295" />
         <entry key="app/src/main/res/layout/activity_app_display_given_plant.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_app_modifier_pant.xml" value="0.17299898682877407" />
+        <entry key="app/src/main/res/layout/activity_app_watering_plant.xml" value="0.17299898682877407" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_add_nutriment.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_add_saison.xml" value="0.2246376811594203" />
         <entry key="app/src/main/res/layout/fragment_diplay_given_plant.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_modifier_information_given_plant.xml" value="0.20425724637681159" />
+        <entry key="app/src/main/res/layout/item_watering_plant_today.xml" value="0.17299898682877407" />
         <entry key="app/src/main/res/layout/layout.xml" value="0.35572916666666665" />
         <entry key="app/src/main/res/layout/list_item_nutriment_plant.xml" value="0.25" />
         <entry key="app/src/main/res/layout/list_item_saison_plant.xml" value="0.24909420289855072" />
