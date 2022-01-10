@@ -17,7 +17,8 @@
 
         <activity
             android:name=".AppWateringPlantActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".AppModifierPantActivity"
             android:excludeFromRecents="true"

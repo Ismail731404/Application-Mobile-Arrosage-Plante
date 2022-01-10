@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Arronsage Plant</string>
+    <string name="app_name">Arrosage Plant</string>
     <string name="enter_the_details_for_registre_plant">Enregistrement d\'une nouvelle plante</string>
     <string name="Nom_Commun">Nom_Commun</string>
     <string name="Nom_Latin">Nom_Latin</string>
