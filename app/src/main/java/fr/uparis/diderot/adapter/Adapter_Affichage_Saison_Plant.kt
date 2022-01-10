@@ -13,12 +13,12 @@ import fr.uparis.diderot.databinding.ListItemSaisonPlantBinding
 import java.time.LocalDate
 
 
-class Adapter_Affichage_Saison_Plant() :
+class Adapter_Affichage_Saison_Plant :
     ListAdapter<Arronsage_En_saison, Adapter_Affichage_Saison_Plant.VH>(
         InfoComparator()
     ) {
 
-    var listener: OnItemClickListener?=null
+    var listener: OnItemClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val binding = ListItemSaisonPlantBinding
             .inflate(
@@ -36,7 +36,7 @@ class Adapter_Affichage_Saison_Plant() :
         holder.LastMonth(current.last_Month)
         holder.NumberTimes(current.number_Times)
         holder.PeriodNumberTimes(current.period_Number_Times)
-        if(position % 2 == 0){
+        if (position % 2 == 0) {
             holder.Coloration()
         }
 
@@ -72,7 +72,7 @@ class Adapter_Affichage_Saison_Plant() :
             binding.idSaison.text = id.toString()
         }
 
-        fun Coloration(){
+        fun Coloration() {
             binding.linerLayout.setBackgroundColor(AppDisplayGivenPlant.colorItem)
         }
 
@@ -102,6 +102,6 @@ class Adapter_Affichage_Saison_Plant() :
     }
 
     interface OnItemClickListener {
-        fun onItemClick(position: Int, id_saison:  Int)
+        fun onItemClick(position: Int, id_saison: Int)
     }
 }

@@ -5,6 +5,8 @@ import fr.uparis.diderot.data.entity.Arronsage_En_saison
 import fr.uparis.diderot.data.entity.Nutriment
 import fr.uparis.diderot.data.entity.Watering_Plant
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.util.concurrent.Flow
 
 class AppViewModel(private val appRepository: AppRepository) : ViewModel() {
 
@@ -15,6 +17,8 @@ class AppViewModel(private val appRepository: AppRepository) : ViewModel() {
     var getPlantDonne: LiveData<Watering_Plant>? = null
     var loadListArronsageEnSaisonForGivenPLant: LiveData<List<Arronsage_En_saison>>? = null
     var loadListNUtrimentForGivenPLant: LiveData<List<Nutriment>>? = null
+
+    var wateringPlantByDate: LiveData<List<Watering_Plant>>? = null
 
     fun insertPlantWatering(plant: Watering_Plant) = viewModelScope.launch {
         appRepository.insertWaterPlant(plant)
@@ -66,6 +70,16 @@ class AppViewModel(private val appRepository: AppRepository) : ViewModel() {
 
     fun deleteWateringPlant(id: Int) = viewModelScope.launch {
         appRepository.deleteWateingPlant(id)
+    }
+
+
+    fun getWateringPlant(currentDate : LocalDate){
+            wateringPlantByDate = appRepository.getWateringPlant(currentDate).asLiveData()
+    }
+
+
+    fun updateDate(plant: Watering_Plant) = viewModelScope.launch {
+        appRepository.updateDate(plant)
     }
 }
 

@@ -11,9 +11,9 @@
         />
 
     <item
-        android:id="@+id/bientot"
+        android:id="@+id/ArronsageToDay"
         android:icon="@drawable/ic_launcher_background"
-        android:title="bientot"
+        android:title="Show Watering Plant"
         app:showAsAction="never"
         />
 </menu>

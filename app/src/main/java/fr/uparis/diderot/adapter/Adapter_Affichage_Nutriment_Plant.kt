@@ -4,7 +4,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -14,12 +13,12 @@ import fr.uparis.diderot.databinding.ListItemNutrimentPlantBinding
 import java.time.LocalDate
 
 
-class Adapter_Affichage_Nutriment_Plant() :
+class Adapter_Affichage_Nutriment_Plant :
     ListAdapter<Nutriment, Adapter_Affichage_Nutriment_Plant.VH>(
         InfoComparator()
     ) {
 
-    var listener: OnItemClickListener?=null
+    var listener: OnItemClickListener? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val binding = ListItemNutrimentPlantBinding
             .inflate(
@@ -38,9 +37,9 @@ class Adapter_Affichage_Nutriment_Plant() :
         holder.DateNextNutriment(current.next_Nutriment)
         holder.IdPNutriment(current.id_nutriment)
         Log.i("MainActivity1", "onItemClick: rentre dans onItemCclick")
-         if(position % 2 == 0){
-             holder.Coloration()
-         }
+        if (position % 2 == 0) {
+            holder.Coloration()
+        }
     }
 
     inner class VH(val binding: ListItemNutrimentPlantBinding) :
@@ -71,7 +70,8 @@ class Adapter_Affichage_Nutriment_Plant() :
             id_nutriment = id
             binding.idNutriment.text = id.toString()
         }
-        fun Coloration(){
+
+        fun Coloration() {
             binding.linerLayout.setBackgroundColor(AppDisplayGivenPlant.colorItem)
         }
 
