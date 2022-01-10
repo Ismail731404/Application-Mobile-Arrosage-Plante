@@ -1,313 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:scrollbars="vertical"
-    android:background="#6BFCD4B2">
-<LinearLayout
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:scrollbars="vertical"
-    android:scrollbarAlwaysDrawVerticalTrack="true"
     tools:context=".AppDisplayGivenPlant"
-    app:layout_constraintStart_toStartOf="parent"
-    >
+    android:background="#6BFCD4B2">
 
-
-    <fr.uparis.diderot.views.MaskedCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/card_side_margin"
-                android:layout_marginEnd="@dimen/card_side_margin"
-                android:layout_marginBottom="5dp"
-                app:cardElevation="@dimen/card_elevation"
-                app:cardPreventCornerOverlap="false"
-                app:shapeAppearanceOverlay="@style/ShapeAppearance.Sunflower.Card"
-                tools:ignore="MissingConstraints"
-                android:layout_marginTop="10dp"
-               >
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#DCE9AA74">
-
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="378dp"
-                        android:layout_height="166dp"
-                        android:contentDescription="Picture of plant"
-                        android:scaleType="centerCrop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/plant_name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_normal"
-                        android:gravity="center_horizontal"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/imageView" />
-
-                    <TextView
-                        android:id="@+id/last_waterin_text"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_normal"
-                        android:gravity="center_horizontal"
-                        android:text="last Watering Date"
-                        android:textAppearance="?attr/textAppearanceSubtitle2"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/plant_name" />
-
-                    <TextView
-                        android:id="@+id/last_watering"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="0dp"
-                        android:gravity="center_horizontal"
-                        android:textAppearance="?attr/textAppearanceSubtitle2"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/last_waterin_text"/>
-
-                    <TextView
-                        android:id="@+id/Next_watering_text"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_normal"
-                        android:gravity="center_horizontal"
-                        android:text="Next Waterin Date"
-                        android:textAppearance="?attr/textAppearanceSubtitle2"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/last_watering" />
-
-                    <TextView
-                        android:id="@+id/next_watering"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="0dp"
-                        android:gravity="center_horizontal"
-                        android:textAppearance="?attr/textAppearanceSubtitle2"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/Next_watering_text" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </fr.uparis.diderot.views.MaskedCardView>
-
-
-    <TextView
-        android:id="@+id/textView"
+    <FrameLayout
+        android:id="@+id/containerBas"
         android:layout_width="match_parent"
-        android:layout_height="53dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="#DCE9AA74"
-        android:gravity="center_horizontal|center_vertical"
-        android:paddingLeft="15dp"
-        android:paddingTop="3dp"
-        android:paddingRight="15dp"
-        android:paddingBottom="3dp"
-        android:text="Arronsage Nutriment/Saison de la plant ci-dessus"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textStyle="italic"
-        android:visibility="visible"
-        app:autoSizeTextType="none"
-        app:fontFamily="serif"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/border_linearlayout_horizontal"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        app:layout_constraintStart_toStartOf="parent">
-
+        android:layout_height="0dp"
+        android:layout_weight="0"
+        android:layout_marginTop="9dp">
         <TextView
-            android:id="@+id/id_nutriment"
+            android:id="@+id/containerBasEditext"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="2"
-            android:padding="5dp"
-            android:text="ID Nutriment"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
 
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginEnd="-1dp">
         <TextView
-            android:id="@+id/numberTimes"
+            android:id="@+id/containerEditext"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="2"
-            android:background="@drawable/border_textview_one_side"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:text="Number Times"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/Period_Number_Times"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="2"
-            android:background="@drawable/border_textview_one_side"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:text="Period Num Times"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/lastNutriment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="2"
-            android:background="@drawable/border_textview_one_side"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:text="last Nutriment "
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/NextNutriment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="2"
-            android:background="@drawable/border_textview_one_side"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:text="Next Nutriment"
-            android:textStyle="bold" />
+    </FrameLayout>
 
 
-    </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/NutrimentList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            app:spanCount="@integer/grid_columns"
-            tools:listitem="@layout/list_item_nutriment_plant" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/border_linearlayout_horizontal"
-        android:orientation="horizontal"
-        android:padding="16dp">
-
-        <TextView
-            android:id="@+id/id_saison"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="2"
-            android:padding="5dp"
-            android:text="Id Saison"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/FirthMonth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="2"
-            android:background="@drawable/border_textview_one_side"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:text="Firth Month"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/lastMOnth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="2"
-            android:background="@drawable/border_textview_one_side"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:text=" Last Month"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/numberTimesSaison"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="2"
-            android:background="@drawable/border_textview_one_side"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:text="Number Times"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/PeriodNumberTimes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="2"
-            android:background="@drawable/border_textview_one_side"
-            android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:text="Period Num Times"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-      <androidx.recyclerview.widget.RecyclerView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/ArronsageSaison_List"
-          android:clipToPadding="false"
-          android:layout_marginStart="@dimen/card_side_margin"
-          android:layout_marginEnd="@dimen/card_side_margin"
-          android:layout_marginTop="@dimen/margin_normal"
-          app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-          app:spanCount="@integer/grid_columns"
-          tools:listitem="@layout/list_item_saison_plant"/>
 
 
 </LinearLayout>
-</ScrollView>

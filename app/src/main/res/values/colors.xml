@@ -12,4 +12,6 @@
     <color name="loginButtonBG">#E47119</color>
     <color name="colorPrimaryDark">#0D5922</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorItem">#DCE9bbbb</color>
+
 </resources>
